@@ -1,0 +1,21 @@
+{
+  "name": "eng-exercise",
+  "version": "0.0.1",
+  "description": "A next and nest application",
+  "main": "index.js",
+  "repository": "git@github.com:iphipps/eng-exercise.git",
+  "author": "Ian Phipps <phippsian@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "client": "yarn workspace client",
+    "server": "yarn workspace server"
+  },
+  "workspaces": [
+    "packages/client",
+    "packages/server"
+  ],
+  "devDependencies": {
+    "prettier": "^2.8.4"
+  }
+}
