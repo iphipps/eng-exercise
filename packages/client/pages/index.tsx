@@ -1,25 +1,31 @@
+import { useState } from 'react'
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
+import { getSortedTickets, Ticket } from '../lib/tickets'
 import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
 import { GetStaticProps } from 'next'
+import { AddTicket } from '../components/addTicket'
 
 export default function Home({
   allPostsData,
+  allTickets,
 }: {
   allPostsData: {
     date: string
     title: string
     id: string
   }[]
+  allTickets: Ticket[]
 }) {
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
+      <AddTicket />
       <section className={utilStyles.headingMd}>
         <p>[Your Self Introduction]</p>
         <p>
@@ -30,13 +36,10 @@ export default function Home({
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {allTickets.map(({ id, title }) => (
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>{title}</Link>
               <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
             </li>
           ))}
         </ul>
@@ -47,9 +50,11 @@ export default function Home({
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData()
+  const allTickets = getSortedTickets()
   return {
     props: {
       allPostsData,
+      allTickets,
     },
   }
 }

@@ -25,3 +25,26 @@ img {
   max-width: 100%;
   display: block;
 }
+
+label {
+  font-weight: bolder;
+}
+textarea {
+}
+input, textarea {
+  color: currentcolor;
+  padding: 4px 0px 5px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #e1e1e1;
+  background: none;
+  margin: 0px;
+  display: block;
+  min-width: 0px;
+  width: 100%;
+}
+input:focus {
+  outline: none;
+  border-bottom: 1px solid blue;
+}
