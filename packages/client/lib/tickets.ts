@@ -3,23 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
-
-enum TicketStatus {
-  new = 'New',
-  inProgress = 'In Progress',
-  resolved = 'Resolved',
-}
-
-export type Ticket = {
-  id: string
-  ticketStatus: TicketStatus
-  name: string
-  email: string
-  title: string
-  description: string
-  createdAt: Date
-
-}
+import { Ticket } from '../../server/src/ticket.type'
 
 const ticketsDirectory = path.join(process.cwd(), 'tickets')
 

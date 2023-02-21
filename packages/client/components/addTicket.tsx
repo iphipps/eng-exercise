@@ -1,27 +1,59 @@
 import { useState } from 'react'
-import { getSortedTickets, Ticket } from '../lib/tickets'
+import { getSortedTickets } from '../lib/tickets'
 import utilStyles from '../styles/utils.module.css'
+import { Ticket } from '../../server/src/ticket.type'
+import { useRouter } from 'next/router'
 
-export const AddTicket = () => {
+export const AddTicket = ({
+  ticket,
+  onUpdateTicket,
+}: {
+  ticket?: Ticket
+  onUpdateTicket?: (ticket: Ticket) => void
+}) => {
+  const router = useRouter()
+  const isEditMode = !!ticket && !!onUpdateTicket
+
   const [form, setForm] = useState<
     Omit<Ticket, 'id' | 'createdAt' | 'ticketStatus'>
   >({
-    title: '1',
-    name: '1',
-    email: '1',
-    description: '1',
+    title: isEditMode ? ticket.title : '',
+    name: isEditMode ? ticket.name : '',
+    email: isEditMode ? ticket.email : '',
+    description: isEditMode ? ticket.description : '',
   })
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    fetch('http://localhost:3000/ticket/addTicket', {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((r) => console.log(r))
-      .catch((e) => console.warn(e))
+    if (isEditMode) {
+      fetch(`http://localhost:3000/tickets/${ticket.id}`, {
+        method: 'put',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      })
+        .then((r) => r.json())
+        .then((t) => {
+          onUpdateTicket(t)
+        })
+        .catch((e) => console.warn(e))
+    } else {
+      fetch('http://localhost:3000/tickets', {
+        method: 'post',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      })
+        .then((r) => r.json())
+        .then((t) => {
+          router.push(`/tickets/${t.id}`)
+        })
+        .catch((e) => console.warn(e))
+    }
   }
 
   return (
@@ -65,7 +97,9 @@ export const AddTicket = () => {
           id="email"
         />
       </div>
-      <button type="submit">Create Support Ticket</button>
+      <button type="submit">
+        {isEditMode ? 'Save' : 'Create Support Ticket'}
+      </button>
     </form>
   )
 }

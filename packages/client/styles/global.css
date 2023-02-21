@@ -2,8 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
   line-height: 1.6;
   font-size: 18px;
 }
@@ -12,26 +12,30 @@ body {
   box-sizing: border-box;
 }
 
-a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
 
 img {
   max-width: 100%;
   display: block;
 }
 
+// Variables
+
+html {
+  --shade1: #6096b4;
+  --shade2: #93bfcf;
+  --shade3: #bdcdd6;
+  --shade4: #eee9da;
+}
+
+// Form control
+
 label {
   font-weight: bolder;
 }
 textarea {
 }
-input, textarea {
+input,
+textarea {
   color: currentcolor;
   padding: 4px 0px 5px;
   border-top: none;
@@ -47,4 +51,81 @@ input, textarea {
 input:focus {
   outline: none;
   border-bottom: 1px solid blue;
+}
+
+// Buttons and Links
+
+
+a,
+button {
+  color: var(--shade1);
+  font-size: 1rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  padding: 6px;
+  border-radius: 2px;
+  background-color: white;
+  box-shadow: 0 0 0 1px var(--shade1);
+  color: var(--shade1);
+  outline: none;
+  border: none;
+}
+button > span {
+  position: relative;
+  bottom: 2px;
+}
+button:hover {
+  background-color: var(--shade1);
+  text-decoration: none;
+  color: white;
+}
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--shade2);
+  color: var(--shade2);
+}
+
+.buttonLink {
+  padding: 6px;
+  border-radius: 2px;
+  background-color: white;
+  box-shadow: 0 0 0 1px currentColor;
+}
+.buttonLink > span {
+  position: relative;
+  bottom: 2px;
+}
+.buttonLink:hover {
+  background-color: var(--shade1);
+  text-decoration: none;
+  color: white;
+}
+
+.linkButton {
+  background-color: transparent;
+  text-decoration: none;
+  color: white;
+  box-shadow: none;
+  background-color: transparent;
+  color: var(--shade1);
+  box-shadow: none;
+}
+.linkButton:hover {
+  text-decoration: underline;
+}
+
+// Layout
+div.space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -1,60 +1,46 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
-import { getSortedTickets, Ticket } from '../lib/tickets'
-import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
-import Date from '../components/date'
-import { GetStaticProps } from 'next'
-import { AddTicket } from '../components/addTicket'
+import { Ticket } from '../../server/src/ticket.type'
 
-export default function Home({
-  allPostsData,
-  allTickets,
-}: {
-  allPostsData: {
-    date: string
-    title: string
-    id: string
-  }[]
-  allTickets: Ticket[]
-}) {
+export default function Home({}) {
+  const [tickets, setTickets] = useState<Ticket[]>([])
+  useEffect(() => {
+    fetch('http://localhost:3000/tickets', {
+      method: 'get',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((r) => r.json())
+      .then((data) => setTickets([...tickets, ...data]))
+      .catch((e) => console.warn(e))
+  }, [])
+
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <AddTicket />
-      <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this in{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
-      </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <div className="space-between">
+          <h2 className={utilStyles.headingLg}>Help Desk</h2>
+          <Link href={`/tickets/create`} className={utilStyles.buttonLink}>
+            <span>+</span> Create ticket
+          </Link>
+        </div>
         <ul className={utilStyles.list}>
-          {allTickets.map(({ id, title }) => (
+          {tickets.map(({ id, title, description }) => (
             <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>{title}</Link>
-              <br />
+              <Link href={`/tickets/${id}`}>{title}</Link>
+              <p>{description}</p>
             </li>
           ))}
         </ul>
       </section>
     </Layout>
   )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData()
-  const allTickets = getSortedTickets()
-  return {
-    props: {
-      allPostsData,
-      allTickets,
-    },
-  }
 }
