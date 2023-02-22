@@ -6,17 +6,17 @@ import { Badge } from './badge'
 import { useState, useEffect } from 'react'
 import { CommentBlock } from './comment'
 import { CreateComment } from './createComment'
+import FormattedDate from './formattedDate'
 
 // TODO think up a better name
-// export const Badge = ({ ticketStatus }: { ticketStatus: TicketStatus }) => {
 export const TicketBlock = ({
   ticket,
   onSetEditMode,
-  isAdmin,
+  isAdmin = false,
 }: {
   ticket: Ticket
   onSetEditMode: (ticketId: string) => void
-  isAdmin: true
+  isAdmin?: boolean
 }) => {
   const [comments, setComments] = useState<Comment[]>([])
 
@@ -49,31 +49,35 @@ export const TicketBlock = ({
 
   const createdAt = new Date(parseInt(ticket.createdAt)).toISOString()
   return (
-    <>
+    <div className="mb-4">
       <div className="space-between">
-        <h1 className="justify-start">
+        <h4 className="justify-start">
           {ticket.title} <Badge ticketStatus={ticket.ticketStatus} />
-        </h1>
-        <button className="buttonLink" onClick={() => onSetEditMode(id)}>
+        </h4>
+        <button className="buttonLink" onClick={() => onSetEditMode(ticket.id)}>
           Edit
         </button>
       </div>
       <article>
         <p>
           <strong>Submitted by: </strong> {ticket.name} ({ticket.email})
+          <small>
+            <FormattedDate dateString={createdAt} />
+          </small>
         </p>
         <p>
           <strong>Description: </strong> <br />
           {ticket.description}
         </p>
-        <p>
-          <strong>Created on: </strong> {createdAt}
-        </p>
       </article>
       {sortedComments.map((comment) => (
         <CommentBlock comment={comment} key={comment.id} />
       ))}
-      <CreateComment name={ticket.name} ticketId={ticket.id} onAddComment={onAddComment} />
-    </>
+      <CreateComment
+        name={isAdmin ? 'admin' : ticket.name}
+        ticketId={ticket.id}
+        onAddComment={onAddComment}
+      />
+    </div>
   )
 }

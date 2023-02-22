@@ -21,7 +21,6 @@ export class CommentService {
     message: string;
     ticketId: string;
   }): Comment | 'Comment not created' {
-    console.log('hi', createCommentDto);
     const { message, name, ticketId } = createCommentDto;
     const id = Math.floor(Math.random() * 1000000000000).toString();
 

@@ -4,7 +4,6 @@ import Layout, { siteTitle } from '../../components/layout'
 import utilStyles from '../../styles/utils.module.css'
 import Link from 'next/link'
 import { Ticket } from '../../../server/src/ticket.type'
-import { Badge } from '../../components/badge'
 import { TicketBlock } from '../../components/ticket'
 import { AddTicket } from '../../components/addTicket'
 
@@ -84,7 +83,7 @@ export default function Home({}) {
             <ul className={utilStyles.list}>
               {filteredTickets.map((ticket) => (
                 <TicketBlock
-                  isAdmin
+                  isAdmin={true}
                   key={ticket.id}
                   ticket={ticket}
                   onSetEditMode={(id) => {

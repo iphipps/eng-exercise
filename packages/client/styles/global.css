@@ -73,6 +73,7 @@ input:focus {
   border-bottom: 1px solid blue;
 }
 
+textarea.bordered-input,
 input.bordered-input {
   border-bottom: none;
   box-shadow: 0 0 0 1px #e1e1e1;
@@ -81,6 +82,7 @@ input.bordered-input {
   padding: 6px;
 }
 
+textarea.bordered-input:focus,
 input.bordered-input:focus {
   box-shadow: 0 0 0 1px blue;
   border-bottom: none;
@@ -229,4 +231,24 @@ div.ticket-resolved {
   opacity: 1;
   transform: translateY(0);
   transition-duration: 300ms;
+}
+
+.mb2 {
+  margin-bottom: 0.5rem;
+}
+.mb4 {
+  margin-bottom: 1rem;
+}
+
+.mr2 {
+  margin-right: 0.5rem;
+}
+
+.comment {
+  padding: 0.5rem;
+  box-shadow: inset 0 0 1px #ececec;
+  border-radius: 6px;
+  background-color: #e1e1e1;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { getSortedTickets } from '../lib/tickets'
 import utilStyles from '../styles/utils.module.css'
 import { Ticket, TicketStatus } from '../../server/src/ticket.type'
 import { useRouter } from 'next/router'

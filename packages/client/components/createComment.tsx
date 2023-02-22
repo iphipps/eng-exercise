@@ -38,6 +38,7 @@ export const CreateComment = ({
   return (
     <form onSubmit={handleSubmit}>
       <textarea
+        className="bordered-input mb2"
         value={form.message}
         onChange={(e) => setForm({ ...form, message: e.target.value })}
         placeholder="Message"
