@@ -15,7 +15,7 @@ export class TicketService {
       title: 'Ticket title',
       name: 'Ian Phipps',
       email: 'phippsian@gmail.com',
-      ticketStatus: TicketStatus.resolved,
+      ticketStatus: 'Resolved',
     },
   ];
   create(ticket: Ticket): Ticket | 'Ticket not created' {
@@ -27,6 +27,7 @@ export class TicketService {
       ...ticket,
       id,
       createdAt: new Date().getTime().toString(),
+      ticketStatus: 'New'
     });
     const createdTicket = this.tickets.filter((t) => t.id === id)[0];
     if (createdTicket) return createdTicket;

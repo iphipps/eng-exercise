@@ -1,21 +1,11 @@
-
-export enum TicketStatus {
-  new = 'New',
-  inProgress = 'In Progress',
-  resolved = 'Resolved',
-}
-
-
-
+export type TicketStatus = 'New' | 'In Progress' | 'Resolved';
 
 export type Ticket = {
-  id: string
-  ticketStatus: TicketStatus
-  name: string
-  email: string
-  title: string
-  description: string
-  createdAt: string
-
-}
-
+  id: string;
+  ticketStatus: TicketStatus;
+  name: string;
+  email: string;
+  title: string;
+  description: string;
+  createdAt: string;
+};
