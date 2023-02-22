@@ -16,17 +16,18 @@ export class CommentService {
     },
   ];
 
-  create({
-    comment,
-    ticketId,
-  }: {
-    comment: Comment;
+  create(createCommentDto: {
+    name: string;
+    message: string;
     ticketId: string;
   }): Comment | 'Comment not created' {
+    console.log('hi', createCommentDto);
+    const { message, name, ticketId } = createCommentDto;
     const id = Math.floor(Math.random() * 1000000000000).toString();
 
     this.comments.push({
-      ...comment,
+      message,
+      name,
       ticketId,
       id,
       createdAt: new Date().getTime().toString(),

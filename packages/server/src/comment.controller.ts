@@ -7,7 +7,14 @@ export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
   @Post()
-  create(@Body() createCommentDto: { comment: Comment; ticketId: string }) {
+  create(
+    @Body()
+    createCommentDto: {
+      name: string;
+      message: string;
+      ticketId: string;
+    },
+  ) {
     return this.commentService.create(createCommentDto);
   }
 
