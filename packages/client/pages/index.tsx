@@ -1,46 +1,21 @@
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import Layout from '../components/layout'
+import { getAllTicketIds, getTicketData } from '../lib/tickets'
 import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
-import { Ticket } from '../../server/src/ticket.type'
+import utilStyles from '../../styles/utils.module.css'
+import { GetStaticProps, GetStaticPaths } from 'next'
+import { AddTicket } from '../components/addTicket'
 
-export default function Home({}) {
-  const [tickets, setTickets] = useState<Ticket[]>([])
-  useEffect(() => {
-    fetch('http://localhost:3000/tickets', {
-      method: 'get',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((r) => r.json())
-      .then((data) => setTickets([...tickets, ...data]))
-      .catch((e) => console.warn(e))
-  }, [])
-
+export default function Ticket() {
   return (
     <Layout home>
       <Head>
-        <title>{siteTitle}</title>
+        <title>Create a help desk ticket</title>
       </Head>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <div className="space-between">
-          <h2 className={utilStyles.headingLg}>Help Desk</h2>
-          <Link href={`/tickets/create`} className={utilStyles.buttonLink}>
-            <span>+</span> Create ticket
-          </Link>
-        </div>
-        <ul className={utilStyles.list}>
-          {tickets.map(({ id, title, description }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/tickets/${id}`}>{title}</Link>
-              <p>{description}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <article>
+        <AddTicket />
+      </article>
     </Layout>
   )
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { getSortedTickets } from '../lib/tickets'
 import utilStyles from '../styles/utils.module.css'
-import { Ticket } from '../../server/src/ticket.type'
+import { Ticket, TicketStatus } from '../../server/src/ticket.type'
 import { useRouter } from 'next/router'
 
 export const AddTicket = ({
@@ -14,13 +14,12 @@ export const AddTicket = ({
   const router = useRouter()
   const isEditMode = !!ticket && !!onUpdateTicket
 
-  const [form, setForm] = useState<
-    Omit<Ticket, 'id' | 'createdAt' | 'ticketStatus'>
-  >({
+  const [form, setForm] = useState<Omit<Ticket, 'id' | 'createdAt'>>({
     title: isEditMode ? ticket.title : '',
     name: isEditMode ? ticket.name : '',
     email: isEditMode ? ticket.email : '',
     description: isEditMode ? ticket.description : '',
+    ticketStatus: isEditMode ? ticket.ticketStatus : 'New',
   })
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -97,9 +96,65 @@ export const AddTicket = ({
           id="email"
         />
       </div>
-      <button type="submit">
-        {isEditMode ? 'Save' : 'Create Support Ticket'}
-      </button>
+      {isEditMode && (
+        <div className={utilStyles.mb2}>
+          <label htmlFor="status">Status</label>
+          <div className="form-control">
+            <input
+              type="radio"
+              value="New"
+              id="new"
+              name="status"
+              checked={form.ticketStatus === 'New'}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  // TODO error check in a function instead of casting
+                  ticketStatus: e.target.value as TicketStatus,
+                })
+              }
+            />
+            <label htmlFor="new">New</label>
+          </div>
+          <div className="form-control">
+            <input
+              type="radio"
+              value="In Progress"
+              id="in-progress"
+              name="status"
+              checked={form.ticketStatus === 'In Progress'}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  // TODO error check in a function instead of casting
+                  ticketStatus: e.target.value as TicketStatus,
+                })
+              }
+            />
+            <label htmlFor="in-progress">In Progress</label>
+          </div>
+          <div className="form-control">
+            <input
+              type="radio"
+              value="Resolved"
+              id="resolved"
+              name="status"
+              checked={form.ticketStatus === 'Resolved'}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  // TODO error check in a function instead of casting
+                  ticketStatus: e.target.value as TicketStatus,
+                })
+              }
+            />
+            <label htmlFor="resolved">Resolved</label>
+          </div>
+        </div>
+      )}
+      <div className="justify-end">
+        <button type="submit">{isEditMode ? 'Save' : 'Create a ticket'}</button>
+      </div>
     </form>
   )
 }
