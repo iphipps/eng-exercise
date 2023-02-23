@@ -1,7 +1,5 @@
 import { Ticket } from '../../server/src/ticket.type'
 import { Comment } from '../../server/src/comment.type'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
 import { Badge } from './badge'
 import { useState, useEffect } from 'react'
 import { CommentBlock } from './comment'

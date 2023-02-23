@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Param, Put } from '@nestjs/common';
+import { Body, Controller, Get, Post, Param } from '@nestjs/common';
 import { CommentService } from './comment.service';
 import { Comment } from './comment.type';
 

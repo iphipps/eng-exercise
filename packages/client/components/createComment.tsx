@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Comment } from '../../server/src/comment.type'
-import { Ticket } from '../../server/src/ticket.type'
 
 export const CreateComment = ({
   ticketId,

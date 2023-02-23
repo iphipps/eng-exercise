@@ -50,7 +50,7 @@ On the frontend:
 
 1. Add a data/state manager for reducing duplicated code and being able to listen to events and update state. Maybe redux(?)
 2. Add a design system.
-3. Respect backend auth/roles. Currently, this has useful screens for public/private roles, e.g. edit and create ticket. But the experience should be more curated by role.
+3. Respect backend auth/roles. Currently, this has useful screens for public/private roles, e.g. `/admin` vs `/[ticketId]` vs `/` . But the experience should be more curated and secured by role.
 4. More tests
 
 Infra stuff:
@@ -59,6 +59,7 @@ Infra stuff:
 2. A release tagging system that the team likes and knows how to use
 3. CI -- linting and testing
 4. A tsconfig that better enforces congruence between back and front end.
+5. Linting
 
 # On process
 

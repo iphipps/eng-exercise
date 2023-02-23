@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { title } from 'process';
-import { Ticket, TicketStatus } from './ticket.type';
+import { Ticket } from './ticket.type';
 
 @Injectable()
 export class TicketService {
@@ -27,7 +26,7 @@ export class TicketService {
       ...ticket,
       id,
       createdAt: new Date().getTime().toString(),
-      ticketStatus: 'New'
+      ticketStatus: 'New',
     });
     const createdTicket = this.tickets.filter((t) => t.id === id)[0];
     if (createdTicket) return createdTicket;
@@ -46,7 +45,6 @@ export class TicketService {
 
   update(id: string, ticket: Ticket): Ticket {
     const existingTicketIndex = this.tickets.findIndex((t) => t.id === id);
-    const existingTicket = this.tickets[existingTicketIndex];
     // TODO improve this.  Or wait until we add a DB
     this.tickets[existingTicketIndex] = {
       ...this.tickets[existingTicketIndex],

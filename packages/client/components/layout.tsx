@@ -1,19 +1,13 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
 
-const name = 'Help Desk'
 export const siteTitle = 'Sample Help Desk'
 
 export default function Layout({
   children,
-  home,
   page = 'create',
 }: {
   children: React.ReactNode
-  home?: boolean
   page?: 'admin' | 'create' | 'detail'
 }) {
   return (
@@ -41,7 +35,9 @@ export default function Layout({
             {page === 'detail' && <>Ticket chat</>}
           </h2>
 
-          {page === 'create' && <h3 className="serif unbold">How can we help?</h3>}
+          {page === 'create' && (
+            <h3 className="serif unbold">How can we help?</h3>
+          )}
         </>
       </header>
       <main>{children}</main>

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Layout, { siteTitle } from '../../components/layout'
 import utilStyles from '../../styles/utils.module.css'
-import Link from 'next/link'
 import { Ticket } from '../../../server/src/ticket.type'
 import { TicketBlock } from '../../components/ticket'
 import { AddTicket } from '../../components/addTicket'
@@ -11,7 +10,6 @@ const updateLocalTickets = (tickets: Ticket[], ticket: Ticket): Ticket[] => {
   // TODO eww ok now it feels like we need state management
   // Also this is the same as update in server / maybe an opportunity to dry it up
   const existingTicketIndex = tickets.findIndex((t) => t.id === ticket.id)
-  const existingTicket = tickets[existingTicketIndex]
   tickets[existingTicketIndex] = {
     ...tickets[existingTicketIndex],
     ...ticket,
@@ -33,7 +31,7 @@ export default function Home({}) {
         email.toLowerCase().includes(filter.toLowerCase()) ||
         name.toLowerCase().includes(filter.toLowerCase())
     )
-    .sort((c1,c2) => {
+    .sort((c1, c2) => {
       const createdAt1 = parseInt(c1.createdAt)
       const createdAt2 = parseInt(c2.createdAt)
       return createdAt1 > createdAt2 ? -1 : createdAt1 < createdAt2 ? 1 : 0
