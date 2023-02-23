@@ -15,7 +15,7 @@ export const TicketBlock = ({
   isAdmin = false,
 }: {
   ticket: Ticket
-  onSetEditMode: (ticketId: string) => void
+  onSetEditMode?: (ticketId: string) => void
   isAdmin?: boolean
 }) => {
   const [comments, setComments] = useState<Comment[]>([])
@@ -49,26 +49,32 @@ export const TicketBlock = ({
 
   const createdAt = new Date(parseInt(ticket.createdAt)).toISOString()
   return (
-    <div className="mb-4">
+    <div className="mb8">
       <div className="space-between">
-        <h4 className="justify-start">
-          {ticket.title} <Badge ticketStatus={ticket.ticketStatus} />
-        </h4>
-        <button className="buttonLink" onClick={() => onSetEditMode(ticket.id)}>
-          Edit
-        </button>
+        <div>
+          <h4 className="justify-start">
+            {ticket.title}
+            {!!onSetEditMode ? (
+              <button
+                className="button-reset"
+                onClick={() => onSetEditMode(ticket.id)}
+              >
+                <Badge ticketStatus={ticket.ticketStatus} />
+              </button>
+            ) : (
+              <Badge ticketStatus={ticket.ticketStatus} />
+            )}
+          </h4>
+        </div>
+        <small className="shade5">
+          <FormattedDate dateString={createdAt} />
+        </small>
       </div>
-      <article>
-        <p>
-          <strong>Submitted by: </strong> {ticket.name} ({ticket.email})
-          <small>
-            <FormattedDate dateString={createdAt} />
-          </small>
-        </p>
-        <p>
-          <strong>Description: </strong> <br />
-          {ticket.description}
-        </p>
+      <article className="mb4">
+        <p>{ticket.description}</p>
+        <small>
+          Submitted by: <strong>{ticket.name}</strong> ({ticket.email})
+        </small>
       </article>
       {sortedComments.map((comment) => (
         <CommentBlock comment={comment} key={comment.id} />

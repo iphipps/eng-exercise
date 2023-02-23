@@ -10,9 +10,11 @@ export const siteTitle = 'Sample Help Desk'
 export default function Layout({
   children,
   home,
+  page = 'create',
 }: {
   children: React.ReactNode
   home?: boolean
+  page?: 'admin' | 'create' | 'detail'
 }) {
   return (
     <div className={styles.container}>
@@ -32,36 +34,21 @@ export default function Layout({
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <header className={styles.header}>
-        {home ? (
-          <>
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </>
-        ) : (
-          <>
-            <Link href="/">
-              <Image
-                priority
-                src="/images/profile.jpg"
-                className={utilStyles.borderCircle}
-                height={108}
-                width={108}
-                alt={name}
-              />
-            </Link>
-            <h2 className={utilStyles.headingLg}>
+        <>
+          <h2>
+            {page === 'admin' && <>Admin Dashboard</>}
+            {page === 'create' && <>Help Desk</>}
+            {page === 'detail' && (
               <Link href="/" className={utilStyles.colorInherit}>
-                {name}
+                Ticket chat
               </Link>
-            </h2>
-          </>
-        )}
+            )}
+          </h2>
+
+          {page === 'create' && <h3 className="serif">How can we help you?</h3>}
+        </>
       </header>
       <main>{children}</main>
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">← Back to home</Link>
-        </div>
-      )}
     </div>
   )
 }

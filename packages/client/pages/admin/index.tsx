@@ -51,17 +51,11 @@ export default function Home({}) {
   }, [])
 
   return (
-    <Layout home>
+    <Layout page="admin">
       <Head>
         <title>{siteTitle}</title>
       </Head>
       <section className={`${utilStyles.padding1px}`}>
-        <div className="space-between">
-          <h2 className={utilStyles.headingLg}>Help Desk</h2>
-          <Link href={`/`} className={utilStyles.buttonLink}>
-            <span>+</span> Create ticket
-          </Link>
-        </div>
         {!!editingTicket ? (
           <AddTicket
             ticket={editingTicket}
@@ -73,13 +67,15 @@ export default function Home({}) {
           />
         ) : (
           <>
-            <input
-              className="bordered-input"
-              type="text"
-              value={filter}
-              onChange={(e) => setFilter(e.target.value)}
-              placeholder="Filter"
-            />
+            <div className="mb4">
+              <input
+                className="bordered-input"
+                type="text"
+                value={filter}
+                onChange={(e) => setFilter(e.target.value)}
+                placeholder="Search"
+              />
+            </div>
             <ul className={utilStyles.list}>
               {filteredTickets.map((ticket) => (
                 <TicketBlock

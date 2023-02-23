@@ -34,28 +34,12 @@ export default function Ticket() {
   const createdAt = new Date(parseInt(ticket.createdAt)).toISOString()
 
   return (
-    <Layout>
+    <Layout page="detail">
       <Head>
-        <title>{ticket.title}</title>
+        <title>Ticket chat for ticket id: {ticket.id}</title>
       </Head>
 
-      {isEditMode ? (
-        <AddTicket
-          ticket={ticket}
-          onUpdateTicket={(ticket: TicketType) => {
-            setIsEditMode(false)
-            setTicket(ticket)
-          }}
-        />
-      ) : (
-        <TicketBlock
-          key={ticket.id}
-          ticket={ticket}
-          onSetEditMode={(_) => {
-            setIsEditMode(true)
-          }}
-        />
-      )}
+      <TicketBlock key={ticket.id} ticket={ticket} />
     </Layout>
   )
 }

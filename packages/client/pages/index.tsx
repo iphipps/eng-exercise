@@ -8,7 +8,7 @@ import { AddTicket } from '../components/addTicket'
 
 export default function Ticket() {
   return (
-    <Layout home>
+    <Layout page="create">
       <Head>
         <title>Create a help desk ticket</title>
       </Head>

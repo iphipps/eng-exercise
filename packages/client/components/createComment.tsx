@@ -36,7 +36,7 @@ export const CreateComment = ({
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="relative">
       <textarea
         className="bordered-input mb2"
         value={form.message}
@@ -44,9 +44,9 @@ export const CreateComment = ({
         placeholder="Message"
         id="message"
       />
-      <div className="justify-end">
-        <button type="submit">Send</button>
-      </div>
+      <button type="submit" className="message-send">
+        Send
+      </button>
     </form>
   )
 }
