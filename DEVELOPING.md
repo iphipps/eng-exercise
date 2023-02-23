@@ -1,6 +1,6 @@
 # Development Methodologies
 
-Both agile, it's various forms, and kanban are useful methodologies for developing digital products. I would argue that the selection of either depends on team and especially product stage. The goal for any software development methodology is to develop and release software as efficiently as possible, and to grow in efficiency. Both agile and kanban are capable of this.
+Both agile, its various forms, and kanban are useful methodologies for developing digital products. I would argue that the selection of either depends on team and especially product stage. The goal for any software development methodology is to develop and release software as efficiently as possible, and to grow in efficiency. Both agile and kanban are capable of this.
 
 ## Proposal: agile for early stage 0-6 months.
 
@@ -8,12 +8,12 @@ When working with an early stage product, with a goal of a quick mvp to generate
 
 ### An example agenda
 
-Wednesday 2/22 -- Sprint starts
-Wednesday 3/1 -- Developers aim to have tasks in testing (which gives a week to fix defects and plan for the next sprint)
-Thursday 3/2 -- Grooming the tasks for the next sprint
-Tuesday 3/7 -- Demo, Retro and Planning, in that order (i.e. the big meeting day).
+- Wednesday 2/22 -- Sprint starts
+- Wednesday 3/1 -- Developers aim to have tasks in testing (which gives a week to fix defects and plan for the next sprint)
+- Thursday 3/2 -- Grooming the tasks for the next sprint
+- Tuesday 3/7 -- Demo, Retro and Planning, in that order (i.e. the big meeting day).
 
-This schedule gives the team lots of flexibility. It allows for large blocks of uninterrupted time, or for ad hoc chats / pair programming sessions. In my experience, it is the schedule that allows for a team's most enjoyment vs most accomplishment.
+This schedule gives the team lots of flexibility. It allows for large blocks of uninterrupted time, or for ad hoc chats / pair programming sessions. In my experience, it is the schedule that allows for a team's most enjoyment and greatest sense of accomplishment.
 
 ### Ceremonies
 
