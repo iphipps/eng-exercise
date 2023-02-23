@@ -27,14 +27,14 @@ Navigate to `http://localhost:3001`.
 # Screenshots
 
 ![01 Create Ticket](./images/01_Create_Ticket.png)
-![02 Create Ticket filled out](02_Create_Ticket_filled_out.png)
-![03 Ticket Display](03_Ticket_Display.png)
-![04 Ticket Display_with_chat](04_Ticket_Display_with_chat.png)
-![05 Admin](05_Admin.png)
-![06_Admin with chat](06_Admin_with_chat.png)
-![07 Admin_update ticket status](07_Admin_update_ticket_status.png)
-![08 Admin updated ticket status](08_Admin_updated_ticket_status.png)
-![09 Ticket Display with new comment and status](09_Ticket_Display_with_new_comment_and_status.png)
+![02 Create Ticket filled out](./images/02_Create_Ticket_filled_out.png)
+![03 Ticket Display](./images/03_Ticket_Display.png)
+![04 Ticket Display_with_chat](./images/04_Ticket_Display_with_chat.png)
+![05 Admin](./images/05_Admin.png)
+![06_Admin with chat](./images/06_Admin_with_chat.png)
+![07 Admin_update ticket status](./images/07_Admin_update_ticket_status.png)
+![08 Admin updated ticket status](./images/08_Admin_updated_ticket_status.png)
+![09 Ticket Display with new comment and status](./images/09_Ticket_Display_with_new_comment_and_status.png)
 
 # Next steps
 
