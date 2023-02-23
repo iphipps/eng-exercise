@@ -59,40 +59,52 @@ export const AddTicket = ({
       {!isEditMode && (
         <>
           <div className="mb4">
-            <label htmlFor="title">Ticket title</label>
+            <label htmlFor="title" className="mb2 block">
+              Ticket title
+            </label>
             <input
               type="text"
               value={form.title}
               onChange={(e) => setForm({ ...form, title: e.target.value })}
               id="title"
+              className="bordered-input"
             />
           </div>
           <div className="mb4">
-            <label htmlFor="description">What is the issue?</label>
+            <label htmlFor="description" className="mb2 block">
+              What is the issue?
+            </label>
             <textarea
               value={form.description}
               onChange={(e) =>
                 setForm({ ...form, description: e.target.value })
               }
               id="description"
+              className="bordered-input"
             />
           </div>
           <div className="mb4">
-            <label htmlFor="name">What is your name?</label>
+            <label htmlFor="name" className="mb2 block">
+              What is your name?
+            </label>
             <input
               type="text"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               id="name"
+              className="bordered-input"
             />
           </div>
           <div className="mb4">
-            <label htmlFor="email">...and your email?</label>
+            <label htmlFor="email" className="mb2 block">
+              ...and your email?
+            </label>
             <input
               type="text"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               id="email"
+              className="bordered-input"
             />
           </div>
         </>

@@ -2,10 +2,10 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
-  line-height: 1.6;
-  font-size: 18px;
+  font-family: Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
+  line-height: 1.4;
+  font-size: 14px;
 }
 
 * {
@@ -13,7 +13,8 @@ body {
 }
 
 .sans {
-  font-family: -apple-system, Ubuntu, Cantarell, Fira Sans, Droid Sans;
+  font-family: Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
 }
 .serif {
   font-family: Times New Roman, Garamond, Palatino, Georgia, serif;
@@ -26,10 +27,17 @@ h4 {
   margin-top: 0;
   margin-bottom: 0;
 }
+.font-lg {
+  font-size: 16px;
+}
+
+.font-md {
+  font-size: 14px;
+}
 .font-sm {
   font-size: 14px;
-  font-weight: 400;
 }
+
 img {
   max-width: 100%;
   display: block;
@@ -38,6 +46,7 @@ img {
 html {
   --shade1: #ffffff;
   --shade2: #eeeeee;
+  --shade2a: #e5e5e5;
   --shade3: #cccccc;
   --shade4: #999999;
   --shade5: #777777;
@@ -88,9 +97,22 @@ html {
   background-color: var(--shade7);
 }
 
+hr {
+  height: 1px;
+  border: none;
+}
+
 p {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.unbold {
+  font-weight: normal;
+}
+
+.block {
+  display: block;
 }
 
 label {
@@ -109,10 +131,12 @@ textarea {
   padding-bottom: 1px;
   resize: vertical;
   max-height: 200px;
-  min-height: 42px;
 }
+
 input {
   padding: 4px 0px 5px;
+  font-family: Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
 }
 
 input[type='text'],
@@ -128,19 +152,21 @@ textarea {
   display: block;
   min-width: 0px;
   width: 100%;
-  font-family: -apple-system, Ubuntu, Cantarell, Fira Sans, Droid Sans;
+  font-family: Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
 }
 
 textarea:focus,
 input:focus {
   outline: none;
-  border-bottom: 1px solid blue;
+  border-bottom: 1px solid var(--shade7);
 }
 
 textarea.bordered-input,
 input.bordered-input {
   border-bottom: none;
   box-shadow: 0 0 0 1px var(--shade5);
+  background-color: 0 0 0 1px var(--shade5);
   border-radius: 6px;
   height: 40px;
   padding: 6px;
@@ -148,10 +174,11 @@ input.bordered-input {
 
 textarea.bordered-input {
   padding-right: 60px;
+  min-height: 36px;
 }
 textarea.bordered-input:focus,
 input.bordered-input:focus {
-  box-shadow: 0 0 0 1px blue;
+  box-shadow: 0 0 0 1px var(--shade7);
   border-bottom: none;
 }
 
@@ -174,22 +201,25 @@ button {
   border-radius: 2px;
   background-color: white;
   box-shadow: 0 0 0 1px var(--shade6);
-  color: var(--shade6);
+  background-color: var(--shade6);
+  color: var(--shade1);
   outline: none;
   border: none;
+  font-size: 12px;
 }
 button > span {
   position: relative;
   bottom: 2px;
 }
 button:hover {
-  background-color: var(--shade6);
+  background-color: var(--shade1);
   text-decoration: none;
-  color: var(--shade1);
+  color: var(--shade6);
 }
 button:focus {
   outline: none;
   box-shadow: 0 0 0 1px var(--shade7);
+  background-color: var(--shade1);
   color: var(--shade6);
 }
 
@@ -248,7 +278,6 @@ button.button-reset:hover {
 .justify-start {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
 }
 
 div[class*='ticket-'] {
@@ -256,6 +285,8 @@ div[class*='ticket-'] {
   width: 16px;
   height: 16px;
   margin: 2px 8px 0;
+  position: relative;
+  top: -2px;
 }
 
 div[class*='ticket-'] span {
@@ -317,6 +348,22 @@ div.ticket-resolved {
 .mb8 {
   margin-bottom: 2rem;
 }
+.mb12 {
+  margin-bottom: 3rem;
+}
+
+.mt2 {
+  margin-top: 0.5rem;
+}
+.mt4 {
+  margin-top: 1rem;
+}
+.mt8 {
+  margin-top: 2rem;
+}
+.mt12 {
+  margin-top: 3rem;
+}
 
 .mr2 {
   margin-right: 0.5rem;
@@ -327,12 +374,19 @@ div.ticket-resolved {
   box-shadow: inset 0 0 1px #ececec;
   border-radius: 6px;
   background-color: var(--shade2);
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
+}
+
+.comment-even {
+  background-color: var(--shade2);
+}
+
+.comment-odd {
+  background-color: var(--shade2a);
 }
 
 .comment p {
   word-break: break-word;
+  font-size: 12px;
 }
 .relative {
   position: relative;
@@ -340,6 +394,6 @@ div.ticket-resolved {
 .message-send {
   position: absolute;
   right: 6px;
-  bottom: 6px;
+  bottom: 7px;
   border-radius: 8px;
 }

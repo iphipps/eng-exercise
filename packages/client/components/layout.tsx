@@ -38,14 +38,10 @@ export default function Layout({
           <h2>
             {page === 'admin' && <>Admin Dashboard</>}
             {page === 'create' && <>Help Desk</>}
-            {page === 'detail' && (
-              <Link href="/" className={utilStyles.colorInherit}>
-                Ticket chat
-              </Link>
-            )}
+            {page === 'detail' && <>Ticket chat</>}
           </h2>
 
-          {page === 'create' && <h3 className="serif">How can we help you?</h3>}
+          {page === 'create' && <h3 className="serif unbold">How can we help?</h3>}
         </>
       </header>
       <main>{children}</main>

@@ -24,14 +24,20 @@ export default function Home({}) {
   const [filter, setFilter] = useState('')
 
   // Todo, make this a memoized function and maybe fuzzy search
-  const filteredTickets = tickets.filter(
-    ({ description, title, ticketStatus, email, name }) =>
-      description.toLowerCase().includes(filter.toLowerCase()) ||
-      title.toLowerCase().includes(filter.toLowerCase()) ||
-      ticketStatus.toLowerCase().includes(filter.toLowerCase()) ||
-      email.toLowerCase().includes(filter.toLowerCase()) ||
-      name.toLowerCase().includes(filter.toLowerCase())
-  )
+  const filteredTickets = tickets
+    .filter(
+      ({ description, title, ticketStatus, email, name }) =>
+        description.toLowerCase().includes(filter.toLowerCase()) ||
+        title.toLowerCase().includes(filter.toLowerCase()) ||
+        ticketStatus.toLowerCase().includes(filter.toLowerCase()) ||
+        email.toLowerCase().includes(filter.toLowerCase()) ||
+        name.toLowerCase().includes(filter.toLowerCase())
+    )
+    .sort((c1,c2) => {
+      const createdAt1 = parseInt(c1.createdAt)
+      const createdAt2 = parseInt(c2.createdAt)
+      return createdAt1 > createdAt2 ? -1 : createdAt1 < createdAt2 ? 1 : 0
+    })
 
   const [editingTicket, setEditingTicket] = useState<Ticket | undefined>(
     undefined
@@ -76,10 +82,12 @@ export default function Home({}) {
                 placeholder="Search"
               />
             </div>
+            <hr className="mb8 mt8 shade4-b" />
             <ul className={utilStyles.list}>
-              {filteredTickets.map((ticket) => (
+              {filteredTickets.map((ticket, index) => (
                 <TicketBlock
                   isAdmin={true}
+                  isLast={filteredTickets.length - 1 === index}
                   key={ticket.id}
                   ticket={ticket}
                   onSetEditMode={(id) => {

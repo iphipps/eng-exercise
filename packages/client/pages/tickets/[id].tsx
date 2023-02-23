@@ -39,7 +39,7 @@ export default function Ticket() {
         <title>Ticket chat for ticket id: {ticket.id}</title>
       </Head>
 
-      <TicketBlock key={ticket.id} ticket={ticket} />
+      <TicketBlock key={ticket.id} ticket={ticket} isLast={true} />
     </Layout>
   )
 }

@@ -11,10 +11,12 @@ import FormattedDate from './formattedDate'
 // TODO think up a better name
 export const TicketBlock = ({
   ticket,
+  isLast = false,
   onSetEditMode,
   isAdmin = false,
 }: {
   ticket: Ticket
+  isLast?: boolean
   onSetEditMode?: (ticketId: string) => void
   isAdmin?: boolean
 }) => {
@@ -49,10 +51,10 @@ export const TicketBlock = ({
 
   const createdAt = new Date(parseInt(ticket.createdAt)).toISOString()
   return (
-    <div className="mb8">
-      <div className="space-between">
+    <div className="mb8 mt4">
+      <div className="space-between mb2">
         <div>
-          <h4 className="justify-start">
+          <h4 className="justify-start font-lg">
             {ticket.title}
             {!!onSetEditMode ? (
               <button
@@ -71,19 +73,25 @@ export const TicketBlock = ({
         </small>
       </div>
       <article className="mb4">
-        <p>{ticket.description}</p>
+        <p className="mb2">{ticket.description}</p>
         <small>
           Submitted by: <strong>{ticket.name}</strong> ({ticket.email})
         </small>
       </article>
-      {sortedComments.map((comment) => (
-        <CommentBlock comment={comment} key={comment.id} />
+      {sortedComments.map((comment, index) => (
+        <CommentBlock
+          comment={comment}
+          key={comment.id}
+          isEven={index % 2 === 0}
+        />
       ))}
       <CreateComment
         name={isAdmin ? 'admin' : ticket.name}
         ticketId={ticket.id}
         onAddComment={onAddComment}
       />
+
+      {!isLast && <hr className="mb12 mt12 shade4-b" />}
     </div>
   )
 }
