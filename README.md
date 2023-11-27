@@ -1,8 +1,15 @@
 # Introduction
 
-This is a yarn packages mono repo with a [server directory](./server) that runs nestJS and a [client directory](./client) that runs Next.js.
+This repo represents a coding challenge for a role I was considering. As you can tell, it is a bit in depth.  The challenge involved two prompts:
+1. To create a help desk / support system ticket management system which is the code in this repository.
+2. Team leading. How would you lead a team? What methodology would you follow, at what cadence? Who would be writing product spec and tickets? How would you collaborate with product / design? How would you deliver bad feedback.  I address these questions in [DEVELOPING.md](./DEVELOPING.md).
+
+In the end, this gig was not a match, but it was a fun exercise regardless.
 
 # Run the app
+
+This is a yarn packages mono repo with a [server directory](./server) that runs nestJS and a [client directory](./client) that runs Next.js.
+
 
 Install all npm dependencies
 
